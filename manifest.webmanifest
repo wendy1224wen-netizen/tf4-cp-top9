@@ -1,0 +1,10 @@
+{
+  "name": "心动宇宙｜TF四代CP总选",
+  "short_name": "CP TOP9",
+  "description": "105组TF四代CP四选一总选",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f4efe7",
+  "theme_color": "#f4efe7",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

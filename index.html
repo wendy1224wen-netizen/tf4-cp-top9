@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4efe7">
+  <meta name="description" content="105组TF四代CP四选一总选，生成你的专属TOP 9。">
+  <meta property="og:title" content="心动宇宙｜TF四代CP总选">
+  <meta property="og:description" content="105组CP，四选一，测出你的专属TOP 9。">
+  <title>心动宇宙｜TF四代CP总选</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <main class="app-shell">
+    <section id="intro" class="screen intro-screen is-active" aria-labelledby="intro-title">
+      <div class="intro-orbit intro-orbit-one" aria-hidden="true"></div>
+      <div class="intro-orbit intro-orbit-two" aria-hidden="true"></div>
+      <div class="eyebrow"><span></span> TF 4TH GEN CP AWARDS</div>
+      <h1 id="intro-title">心动<br><em>宇宙</em></h1>
+      <p class="intro-subtitle">105组CP · 四选一 · 你的最终TOP 9</p>
+
+      <div class="intro-stack" aria-hidden="true">
+        <div class="mini-card mini-card-a"><div class="sprite" data-candidate="58"></div></div>
+        <div class="mini-card mini-card-b"><div class="sprite" data-candidate="0"></div></div>
+        <div class="mini-card mini-card-c"><div class="sprite" data-candidate="97"></div></div>
+      </div>
+
+      <div class="intro-panel">
+        <div class="intro-stat"><strong>84</strong><span>次心动选择</span></div>
+        <div class="intro-stat"><strong>3</strong><span>轮动态复核</span></div>
+        <div class="intro-stat"><strong>9</strong><span>席最终榜单</span></div>
+      </div>
+
+      <p class="intro-note">每一组只选你更心动的那对。全员会出现两次，高位CP还会进入复核与冲刺，进度自动保存在本机。</p>
+      <button id="start-button" class="primary-button" type="button">
+        <span class="button-label">开始总选</span><span aria-hidden="true">↗</span>
+      </button>
+      <button id="reset-intro-button" class="text-button is-hidden" type="button">清除记录，重新开始</button>
+      <p class="disclaimer">饭制娱乐向 · 排名仅代表本次选择</p>
+    </section>
+
+    <section id="game" class="screen game-screen" aria-labelledby="round-title">
+      <header class="game-header">
+        <div>
+          <div id="stage-label" class="stage-label">ROUND 01 · 全员海选</div>
+          <h2 id="round-title">这一组，选谁？</h2>
+        </div>
+        <button id="undo-button" class="icon-button" type="button" aria-label="撤销上一次选择" disabled>↶</button>
+      </header>
+
+      <div class="progress-wrap" aria-label="总选进度">
+        <div class="progress-track"><div id="progress-bar" class="progress-bar"></div></div>
+        <span id="progress-text">1 / 84</span>
+      </div>
+
+      <div id="choice-grid" class="choice-grid" role="group" aria-label="四组选项"></div>
+
+      <footer class="game-footer">
+        <span>点击照片即可选择</span>
+        <span class="keyboard-tip">键盘 1—4 也可以选</span>
+      </footer>
+    </section>
+
+    <section id="transition" class="screen transition-screen" aria-live="polite">
+      <div class="transition-mark" aria-hidden="true">✦</div>
+      <div id="transition-kicker" class="eyebrow"><span></span> ROUND COMPLETE</div>
+      <h2 id="transition-title">第一轮完成</h2>
+      <p id="transition-copy">正在整理你的心动坐标。</p>
+      <button id="continue-button" class="primary-button" type="button">继续下一轮 <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section id="result" class="screen result-screen" aria-labelledby="result-title">
+      <div class="result-heading">
+        <div class="eyebrow"><span></span> YOUR FINAL RANKING</div>
+        <h2 id="result-title">你的心动<br><em>TOP 9</em></h2>
+        <p>84次选择留下的专属顺位</p>
+      </div>
+      <div id="result-grid" class="result-grid"></div>
+      <div class="result-actions">
+        <button id="poster-button" class="primary-button" type="button">生成榜单图 <span aria-hidden="true">↗</span></button>
+        <button id="restart-button" class="secondary-button" type="button">重新测一次</button>
+      </div>
+      <details class="full-ranking">
+        <summary>查看冲刺轮完整排名</summary>
+        <ol id="full-ranking-list"></ol>
+      </details>
+      <p class="disclaimer">TF四代CP总选 · 饭制娱乐向</p>
+    </section>
+  </main>
+
+  <div id="poster-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="poster-title" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <div><span class="modal-kicker">SHARE YOUR HEART</span><h3 id="poster-title">你的TOP 9榜单图</h3></div>
+        <button class="icon-button" data-close-modal type="button" aria-label="关闭">×</button>
+      </div>
+      <img id="poster-preview" alt="你的CP TOP 9榜单图">
+      <p>手机端可长按图片保存，也可以点击下方按钮下载。</p>
+      <a id="poster-download" class="primary-button" download="TF4-CP-TOP9.png">下载图片 <span aria-hidden="true">↓</span></a>
+    </div>
+  </div>
+
+  <canvas id="poster-canvas" width="1080" height="1440" hidden></canvas>
+  <script src="app.js" defer></script>
+</body>
+</html>
